@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -40,11 +39,10 @@ func convertText(c *gin.Context) {
 	}
 
 	for _, c := range original_message.Message {
-		fmt.Println(string(c), ":", int(c))
 		if c >= 'a' && c <= 'z' {
-			new_message.Message += string(int(c) + int(CharSets[0].LowerOffset))
+			new_message.Message += string(rune(int(c) + int(CharSets[0].LowerOffset)))
 		} else if c >= 'A' && c <= 'Z' {
-			new_message.Message += string(int(c) + int(CharSets[0].UpperOffset))
+			new_message.Message += string(rune(int(c) + int(CharSets[0].UpperOffset)))
 		} else {
 			new_message.Message += string(c)
 		}
